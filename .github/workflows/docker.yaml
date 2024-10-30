@@ -1,4 +1,4 @@
-name: Docker iso make & Publish
+name: Docker iso build & Publish
 
 on:
   push:
