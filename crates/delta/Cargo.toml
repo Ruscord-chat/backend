@@ -66,7 +66,7 @@ schemars = "0.8.8"
 revolt_rocket_okapi = { version = "0.9.1", features = ["swagger"] }
 
 # core
-authifier = "1.0.8"
+authifier = { git = "https://github.com/ruscordchat/authifier" }
 revolt-config = { path = "../core/config" }
 revolt-database = { path = "../core/database", features = [
     "rocket-impl",
