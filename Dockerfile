@@ -1,5 +1,6 @@
 # Build Stage
 FROM --platform="${BUILDPLATFORM}" rust:1.77.2-slim-bookworm
+
 USER 0:0
 WORKDIR /home/rust/src
 
@@ -12,6 +13,12 @@ RUN apt-get update && \
     make \
     pkg-config \
     libssl-dev:"${TARGETARCH}"
+
+# Update Rust to the latest stable version (or at least 1.79)
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
+    /root/.cargo/bin/rustup update stable && \
+    /root/.cargo/bin/rustup default stable
+
 COPY scripts/build-image-layer.sh /tmp/
 RUN sh /tmp/build-image-layer.sh tools
 
